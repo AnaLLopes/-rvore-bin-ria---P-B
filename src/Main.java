@@ -20,6 +20,7 @@ public class Main {
             System.out.println("6 | Mostrar caminhamentos");
             System.out.println("7 | Soma de valores entre nodos");
             System.out.println("8 | Esvaziar árvore");
+            System.out.println("9 | Balancear AVL");
             System.out.println("0 | Sair do programa");
             System.out.println("---------------------------------------");
             System.out.println("Digite a opção desejada: ");
