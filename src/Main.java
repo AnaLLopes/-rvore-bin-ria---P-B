@@ -57,10 +57,13 @@ public class Main {
                     tree.caminhamentos();
                 }
                 case 7 -> {
-                    // tree.sumBetween();
+                    tree.sumBetween();
                 }
                 case 8 -> {
                     tree.clearTree();
+                }
+                case 9 -> {
+                    //avl
                 }
 
             }
