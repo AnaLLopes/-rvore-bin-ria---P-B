@@ -262,24 +262,38 @@ class BinarySearchTree {
         }
     }
 
-
     /**
      * Método minNode()
      * método que busca o menor valor existente na árvore
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor do menor nodo da árvore
      */
-    // public int minNode() {}
-
-
+    // public int minNode() {
+        if (isEmpty()) return null;
+        return min(this.root);
+    }
+        
+    //private Node min(Node node) {
+    //     if (node.left == null) return node;
+    //    else return min(node.left);
+    //}
+    
     /**
      * Método maxNode()
      * método que busca o maior valor existente na árvore
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor do maior nodo da árvore
      */
-    // public int maxNode() {}
 
+    public int maxNode() {
+        if (isEmpty()) return null;
+            
+        Node node = this.root;
+        while(node.right != null)
+            node = node.right;      
+    
+        return node;
+    }
 
     /**
      * Método countLeaves()
@@ -287,7 +301,15 @@ class BinarySearchTree {
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
-    //public int countLeaves() {}
+    
+     public int countLeaves() {
+        if (node == null)
+            return 0;
+        if (node.left == null && node.right == null)
+            return 1;
+        else
+            return getLeafCount(node.left) + getLeafCount(node.right);
+     }
 
 
     /**
