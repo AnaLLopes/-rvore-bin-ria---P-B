@@ -268,7 +268,7 @@ class BinarySearchTree {
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor do menor nodo da árvore
      */
-    // public int minNode() {
+     public int minNode() {
         if (isEmpty()) return null;
         return min(this.root);
     }
@@ -321,5 +321,4 @@ class BinarySearchTree {
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
     // public int countBetween(int start, int end) {}
-
-}
+    }
