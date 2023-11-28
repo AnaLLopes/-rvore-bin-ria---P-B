@@ -1,0 +1,89 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+class TreeFormatter {
+   int padding = 2;
+
+   TreeFormatter() {
+   }
+
+   private int indent(List<String> lines, int margin) {
+      if (margin >= 0) {
+         return margin;
+      } else {
+         String spaces = " ".repeat(-margin);
+         int i = 0;
+         Iterator var5 = lines.iterator();
+
+         while(var5.hasNext()) {
+            String line = (String)var5.next();
+            lines.set(i++, spaces + line);
+         }
+
+         return 0;
+      }
+   }
+
+   private List<String> merge(List<String> left, List<String> right) {
+      int minSize = Math.min(left.size(), right.size());
+      int offset = 0;
+
+      int i;
+      for(i = 0; i < minSize; ++i) {
+         offset = Math.max(offset, ((String)left.get(i)).length() + this.padding - ((String)right.get(i)).replaceAll("\\S.*", "").length());
+      }
+
+      this.indent(right, -this.indent(left, offset));
+
+      for(i = 0; i < minSize; ++i) {
+         String var10002 = (String)left.get(i);
+         left.set(i, var10002 + ((String)right.get(i)).substring(((String)left.get(i)).length()));
+      }
+
+      if (right.size() > minSize) {
+         left.addAll(right.subList(minSize, right.size()));
+      }
+
+      return left;
+   }
+
+   private List<String> buildLines(Node node) {
+      if (node == null) {
+         return new ArrayList();
+      } else {
+         List<String> lines = this.merge(this.buildLines(node.left), this.buildLines(node.right));
+         int half = String.valueOf(node.element).length() / 2;
+         int i = half;
+         if (lines.size() > 0) {
+            i = ((String)lines.get(0)).indexOf("*");
+            String line;
+            if (node.right == null) {
+               line = " ".repeat(i) + "\u250c\u2500\u2518";
+               i += 2;
+            } else if (node.left == null) {
+               int var10001 = i = this.indent(lines, i - 2);
+               line = " ".repeat(var10001) + "\u2514\u2500\u2510";
+            } else {
+               int dist = ((String)lines.get(0)).length() - 1 - i;
+               line = String.format("%s\u250c%s\u2534%s\u2510", " ".repeat(i), "\u2500".repeat(dist / 2 - 1), "\u2500".repeat((dist - 1) / 2));
+               i += dist / 2;
+            }
+
+            lines.set(0, line);
+         }
+
+         String var10002 = " ".repeat(this.indent(lines, i - half));
+         lines.add(0, var10002 + node.element);
+         int var10003 = i + Math.max(0, half - i);
+         lines.add(0, " ".repeat(var10003) + "*");
+         return lines;
+      }
+   }
+
+   public String topDown(Node root) {
+      List<String> lines = this.buildLines(root);
+      return String.join("\n", lines.subList(1, lines.size()));
+   }
+}
