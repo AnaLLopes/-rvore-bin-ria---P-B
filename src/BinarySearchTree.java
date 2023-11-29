@@ -304,6 +304,10 @@ class BinarySearchTree {
         return (maxNode != null) ? maxNode.element : 0;
     }
     
+     /**
+      * auxiliar para utilizar nos metodos 
+    */
+
     private boolean isEmpty() {
         return root == null;
     }
@@ -337,6 +341,10 @@ class BinarySearchTree {
         sumBetweenRecursive(root, start, end, sum);
         return sum;
     }
+    
+     /**
+      * auxiliar para recursão utilizado no método sumBetween
+      */ 
     
     private void sumBetweenRecursive(Node current, Node start, Node end, int sum) {
         if (current == null) {
