@@ -282,7 +282,7 @@ class BinarySearchTree {
         Node x = y.left;
         Node T2 = x.right;
 
-        // Realiza a rotação
+        // realiza a rotação
         x.right = y;
         y.left = T2;
 
@@ -293,13 +293,9 @@ class BinarySearchTree {
         Node y = x.right;
         Node T2 = y.left;
 
-        // Realiza a rotação
+        // realiza a rotação
         y.left = x;
         x.right = T2;
-
-        // Atualiza alturas
-        // updateHeight(x);
-        // updateHeight(y);
 
         return y;
     }
