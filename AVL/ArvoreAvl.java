@@ -263,5 +263,3 @@ public class ArvoreAvl {
 	}
 }
 
-//https://www.guj.com.br/t/arvore-avl-resolvido/58272/3
-//https://gist.github.com/rodrigovilar/5754425
