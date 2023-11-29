@@ -87,23 +87,15 @@ class BinarySearchTree {
             return false;
 
         Node current = root;
-        Node father = root;
-        boolean child_left = true;
         // buscando o valor
         while (current.element != value) {
-            // enquanto nao encontrou
-            father = current;
             // caminha para esquerda
             if (value < current.element) {
                 current = current.left;
-                // é filho a esquerda? sim
-                child_left = true;
             }
             // caminha para direita
             else {
                 current = current.right;
-                // é filho a esquerda? NAO
-                child_left = false;
             }
             // encontrou uma folha -> sai
             if (current == null)
@@ -253,13 +245,15 @@ class BinarySearchTree {
     }
 
     public void treeInfo() {
-        System.out.println("Altura da arvore: " + height(root));
+        System.out.println("Altura da árvore: " + height(root));
         System.out.println("Quantidade de Nós: " + countNodes(root));
-        if (root != null) {
-            System.out.println("Valor minimo: " + minNode());
-            System.out.println("Valor maximo: " + maxNode());
+        if (!isEmpty()) {
+            System.out.println("Valor mínimo: " + minNode());
+            System.out.println("Valor máximo: " + maxNode());
+        } else {
+            System.out.println("A árvore está vazia!");
         }
-        System.out.println("Quantidade de folhas: " + countNodes(root));
+        System.out.println("Quantidade de folhas: " + countLeaves(root));
     }
 
     public void printTree() {
