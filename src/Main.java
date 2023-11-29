@@ -57,7 +57,11 @@ public class Main {
                     tree.caminhamentos();
                 }
                 case 7 -> {
-                    tree.sumBetween();
+                    System.out.println("Informe um valor inteiro de início:");
+                    int start = scan.nextInt();
+                    System.out.println("Informe um valor inteiro de fim:");
+                    int end = scan.nextInt();
+                    tree.sumBetween(start, end);
                 }
                 case 8 -> {
                     tree.clearTree();

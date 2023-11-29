@@ -246,11 +246,11 @@ class BinarySearchTree {
     public void treeInfo() {
         System.out.println("Altura da arvore: " + height(root));
         System.out.println("Quantidade de Nós: " + countNodes(root));
-        //if (root != null) {
-            // System.out.println("Valor minimo: " + minNode());
-            // System.out.println("Valor maximo: " + maxNode());
-        // }
-        // System.out.println("Quantidade de folhas: " + leaveNodes(root));
+        if (root != null) {
+            System.out.println("Valor minimo: " + minNode());
+            System.out.println("Valor maximo: " + maxNode());
+        }
+        System.out.println("Quantidade de folhas: " + countNodes(root));
     }
 
     public void printTree() {
@@ -268,22 +268,17 @@ class BinarySearchTree {
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor do menor nodo da árvore
      */
-     public Node minNode() {
+    public Node minNode() {
         if (isEmpty()) {
             return null;
         }
-         Node current = this.root;
-        if (current.left == null){
-            return current;
-        } 
-        else return (current.left);
+        Node current = this.root;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current;
     }
-        
-    //private Node min(Node node) {
-    //     
-    //}
     
-
     /**
      * Método maxNode()
      * método que busca o maior valor existente na árvore
@@ -291,20 +286,19 @@ class BinarySearchTree {
      * @return valor do maior nodo da árvore
      */
 
-    public Node maxNode() {
+     public int maxNode() {
         if (isEmpty()){
-             return null;
+             return 0;
         }
         Node current = this.root;
         while(current.right != null){
             current = current.right;      
-        return current;
         }
-        return (current.right);
+        return current.element;
     }
-
+    
     private boolean isEmpty() {
-        return false;
+        return root == null;
     }
 
     /**
@@ -320,9 +314,8 @@ class BinarySearchTree {
         if (current.left == null && current.right == null)
             return 1;
         else
-            return countNodes(current.left) + countNodes(current.right);
-     }
-
+            return countLeaves(current.left) + countLeaves(current.right);
+    }    
 
     /**
      * Método sumBetween()
@@ -333,14 +326,24 @@ class BinarySearchTree {
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
     public int sumBetween(int start, int end) {
-        start = 1;
-        end = 0;
-        int sum = start + end;
+        int sum = 0;
+        sumBetweenRecursive(root, start, end, sum);
         return sum;
-        //https://acervolima.com/soma-de-todos-os-nos-em-uma-arvore-binaria/
-    }
+        }
+        
+    private void sumBetweenRecursive(Node current, int start, int end, int sum) {
+        if (current == null) {
+            return;
+        }
+        
+        if (current.element >start && current.element < end) {
+            sum += current.element;
+        }
 
-    public void sumBetween() {
+        sumBetweenRecursive(current.left, start, end, sum);
+        sumBetweenRecursive(current.right, start, end, sum);
     }
+        
     }
+    
     
