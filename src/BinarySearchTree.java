@@ -268,16 +268,22 @@ class BinarySearchTree {
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor do menor nodo da árvore
      */
-     public int minNode() {
-        if (isEmpty()) return null;
-        return min(this.root);
+     public Node minNode() {
+        if (isEmpty()) {
+            return null;
+        }
+         Node current = this.root;
+        if (current.left == null){
+            return current;
+        } 
+        else return (current.left);
     }
         
     //private Node min(Node node) {
-    //     if (node.left == null) return node;
-    //    else return min(node.left);
+    //     
     //}
     
+
     /**
      * Método maxNode()
      * método que busca o maior valor existente na árvore
@@ -285,14 +291,20 @@ class BinarySearchTree {
      * @return valor do maior nodo da árvore
      */
 
-    public int maxNode() {
-        if (isEmpty()) return null;
-            
-        Node node = this.root;
-        while(node.right != null)
-            node = node.right;      
-    
-        return node;
+    public Node maxNode() {
+        if (isEmpty()){
+             return null;
+        }
+        Node current = this.root;
+        while(current.right != null){
+            current = current.right;      
+        return current;
+        }
+        return (current.right);
+    }
+
+    private boolean isEmpty() {
+        return false;
     }
 
     /**
@@ -302,13 +314,13 @@ class BinarySearchTree {
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
     
-     public int countLeaves() {
-        if (node == null)
+     public int countLeaves(Node current) {
+        if (current == null)
             return 0;
-        if (node.left == null && node.right == null)
+        if (current.left == null && current.right == null)
             return 1;
         else
-            return getLeafCount(node.left) + getLeafCount(node.right);
+            return countNodes(current.left) + countNodes(current.right);
      }
 
 
@@ -320,5 +332,15 @@ class BinarySearchTree {
      * @param defina outros caso haja necessidade na sua implementação
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
-    // public int countBetween(int start, int end) {}
+    public int sumBetween(int start, int end) {
+        start = 1;
+        end = 0;
+        int sum = start + end;
+        return sum;
+        //https://acervolima.com/soma-de-todos-os-nos-em-uma-arvore-binaria/
     }
+
+    public void sumBetween() {
+    }
+    }
+    
