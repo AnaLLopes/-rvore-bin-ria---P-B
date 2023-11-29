@@ -244,13 +244,15 @@ class BinarySearchTree {
     }
 
     public void treeInfo() {
-        System.out.println("Altura da arvore: " + height(root));
+        System.out.println("Altura da árvore: " + height(root));
         System.out.println("Quantidade de Nós: " + countNodes(root));
-        if (root != null) {
-            System.out.println("Valor minimo: " + minNode());
-            System.out.println("Valor maximo: " + maxNode());
+        if (!isEmpty()) {
+            System.out.println("Valor mínimo: " + minNode().element);
+            System.out.println("Valor máximo: " + maxNodeValue());
+        } else {
+            System.out.println("A árvore está vazia!");
         }
-        System.out.println("Quantidade de folhas: " + countNodes(root));
+        System.out.println("Quantidade de folhas: " + countLeaves(root));
     }
 
     public void printTree() {
@@ -286,15 +288,20 @@ class BinarySearchTree {
      * @return valor do maior nodo da árvore
      */
 
-     public int maxNode() {
-        if (isEmpty()){
-             return 0;
+     public Node maxNode() {
+        if (isEmpty()) {
+            return null;
         }
         Node current = this.root;
-        while(current.right != null){
-            current = current.right;      
+        while (current.right != null) {
+            current = current.right;
         }
-        return current.element;
+        return current;
+    }
+    
+    public int maxNodeValue() {
+        Node maxNode = maxNode();
+        return (maxNode != null) ? maxNode.element : 0;
     }
     
     private boolean isEmpty() {
@@ -325,25 +332,24 @@ class BinarySearchTree {
      * @param defina outros caso haja necessidade na sua implementação
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
-    public int sumBetween(int start, int end) {
+    public int sumBetween(Node start, Node end) {
         int sum = 0;
         sumBetweenRecursive(root, start, end, sum);
         return sum;
-        }
-        
-    private void sumBetweenRecursive(Node current, int start, int end, int sum) {
+    }
+    
+    private void sumBetweenRecursive(Node current, Node start, Node end, int sum) {
         if (current == null) {
             return;
         }
-        
-        if (current.element >start && current.element < end) {
+    
+        if (current.element > start.element && current.element < end.element) {
             sum += current.element;
         }
-
+    
         sumBetweenRecursive(current.left, start, end, sum);
         sumBetweenRecursive(current.right, start, end, sum);
     }
-        
     }
     
     

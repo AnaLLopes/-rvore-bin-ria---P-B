@@ -58,11 +58,22 @@ public class Main {
                 }
                 case 7 -> {
                     System.out.println("Informe um valor inteiro de início:");
-                    int start = scan.nextInt();
+                    int Vstart = scan.nextInt();
                     System.out.println("Informe um valor inteiro de fim:");
-                    int end = scan.nextInt();
-                    tree.sumBetween(start, end);
+                    int Vend = scan.nextInt();
+                
+                    Node start = tree.contains(Vstart);
+                    Node end = tree.contains(Vend);
+                
+                    if (start != null && end != null) {
+                        int sum = tree.sumBetween(start, end);
+                        System.out.println("A soma dos valores entre " + Vstart + " e " + Vend + " é: " + sum);
+                    } else {
+                        System.out.println("Nodos de início ou fim não encontrados na árvore.");
+                    }
                 }
+                
+
                 case 8 -> {
                     tree.clearTree();
                 }
